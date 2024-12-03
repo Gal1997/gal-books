@@ -11,26 +11,46 @@ export const bookService = {
   remove,
   save,
   //   getEmptyCar: getEmptyBook,
-  //   getDefaultFilter,
+  getDefaultFilter,
 };
 
 // For Debug (easy access from console):
 // window.cs = carService
 
 function query(filterBy = {}) {
-  return storageService.query(BOOK_KEY);
-  // .then(books => {
-  //     if (filterBy.txt) {
-  //         const regExp = new RegExp(filterBy.txt, 'i')
-  //         books = books.filter(car => regExp.test(car.vendor))
-  //     }
+  const { txt, price, pageCount, publishedDate, isOnSale } = filterBy;
+  return storageService.query(BOOK_KEY).then((books) => {
+    const filteredBooks = books.filter((book) => {
+      if (
+        txt &&
+        !`${book.title} ${book.description}`
+          .toLowerCase()
+          .includes(txt.toLowerCase())
+      ) {
+        return false;
+      }
 
-  //     if (filterBy.minSpeed) {
-  //         books = books.filter(car => car.maxSpeed >= filterBy.minSpeed)
-  //     }
+      if (price && price > book.listPrice.amount) {
+        return false;
+      }
 
-  //     return books
-  // })
+      if (pageCount && pageCount > book.pageCount) {
+        return false;
+      }
+
+      if (publishedDate && publishedDate > book.publishedDate) {
+        return false;
+      }
+
+      if (isOnSale && book.listPrice.isOnSale !== isOnSale) {
+        return false;
+      }
+      // If all filters pass , object is filtered in
+      return true;
+    });
+    if (filteredBooks.length == 0) return "empty";
+    return filteredBooks;
+  });
 }
 
 function get(bookId) {
@@ -53,9 +73,15 @@ function save(book) {
 //     return { vendor, maxSpeed }
 // }
 
-// function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
-//     return { txt: filterBy.txt, minSpeed: filterBy.minSpeed }
-// }
+function getDefaultFilter() {
+  return {
+    txt: "",
+    price: false,
+    pageCount: false,
+    publishedDate: false,
+    isOnSale: false,
+  };
+}
 
 function _createBooks() {
   //   let books = utilService.loadFromStorage(BOOK_KEY);
