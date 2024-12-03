@@ -53,6 +53,7 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
             type="text"
             name="txt"
             id="txt"
+            className="text-input"
           />
         </div>
         <div>
