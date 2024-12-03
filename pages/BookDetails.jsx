@@ -23,7 +23,7 @@ export function BookDetails() {
     return <div className="books-loading">Book Details Loading...</div>;
   return (
     <div className="book-details-container">
-      <div className="title">{book.title}</div>
+      {/* <div className="title">{book.title}</div> */}
       <div className="thumbnail">
         {" "}
         <img src={book.thumbnail} alt={book.title} />
