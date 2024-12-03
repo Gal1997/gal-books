@@ -3,15 +3,17 @@ import { storageService } from "./async-storage.service.js";
 import booksDemoData from "./book.demoData.js";
 
 const BOOK_KEY = "bookDB";
-_createBooks();
+const books = _createBooks();
 
 export const bookService = {
   query,
   get,
   remove,
   save,
-  //   getEmptyCar: getEmptyBook,
+  getNewestBookYear,
   getDefaultFilter,
+  getMostExpensiveBook,
+  getHighestPageCountBook,
 };
 
 // For Debug (easy access from console):
@@ -88,7 +90,26 @@ function _createBooks() {
   if (true /*!books || !books.length*/) {
     let books = booksDemoData;
     utilService.saveToStorage(BOOK_KEY, books);
+    return books;
   }
+}
+
+function getMostExpensiveBook() {
+  return books.reduce((max, book) => {
+    return book.listPrice.amount > max ? book.listPrice.amount : max;
+  }, 0);
+}
+
+function getHighestPageCountBook() {
+  return books.reduce((max, book) => {
+    return book.pageCount > max ? book.pageCount : max;
+  }, 0);
+}
+
+function getNewestBookYear() {
+  return books.reduce((max, book) => {
+    return book.publishedDate > max ? book.publishedDate : max;
+  }, 0);
 }
 
 // function _createCar(vendor, maxSpeed = 250) {

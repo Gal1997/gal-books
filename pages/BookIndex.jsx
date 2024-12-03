@@ -24,6 +24,7 @@ export function BookIndex() {
   }
 
   if (!books) return <div>Loading... </div>;
+  console.log(bookService.getMostExpensiveBook());
 
   return (
     <div>

@@ -3,6 +3,9 @@ import { bookService } from "../services/book.service.js";
 
 export function BookFilter({ defaultFilter, onSetFilter }) {
   const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter);
+  const mostExpensive = bookService.getMostExpensiveBook();
+  const mostPages = bookService.getHighestPageCountBook();
+  const newestBookYear = bookService.getNewestBookYear();
 
   useEffect(() => {
     onSetFilter(filterByToEdit);
@@ -56,7 +59,7 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
             onChange={handleChange}
             type="range"
             min={1}
-            max={25}
+            max={mostExpensive}
             name="price"
             id="price"
           />
@@ -72,7 +75,7 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
             onChange={handleChange}
             type="range"
             min={1}
-            max={1000}
+            max={mostPages}
             name="pageCount"
             id="pageCount"
           />
@@ -85,7 +88,7 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
             onChange={handleChange}
             type="range"
             min={1900}
-            max={new Date().getFullYear()}
+            max={newestBookYear}
             name="publishedDate"
             id="publishedDate"
           />
