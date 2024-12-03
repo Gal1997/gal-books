@@ -25,7 +25,7 @@ function query(filterBy = {}) {
     const filteredBooks = books.filter((book) => {
       if (
         txt &&
-        !`${book.title} ${book.description}`
+        !`${book.title} ${book.subtitle}`
           .toLowerCase()
           .includes(txt.toLowerCase())
       ) {

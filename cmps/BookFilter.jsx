@@ -1,5 +1,6 @@
 const { useState, useEffect, useRef } = React;
 import { bookService } from "../services/book.service.js";
+import { debounce } from "../services/util.service.js";
 
 export function BookFilter({ defaultFilter, onSetFilter }) {
   const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter);
@@ -7,8 +8,10 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
   const mostPages = bookService.getHighestPageCountBook();
   const newestBookYear = bookService.getNewestBookYear();
 
+  const onSetFilterDebounce = useRef(debounce(onSetFilter)).current;
+
   useEffect(() => {
-    onSetFilter(filterByToEdit);
+    onSetFilterDebounce(filterByToEdit);
   }, [filterByToEdit]);
 
   function handleChange({ target }) {

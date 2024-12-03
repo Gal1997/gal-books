@@ -23,8 +23,9 @@ export function BookIndex() {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
 
-  if (!books) return <div>Loading... </div>;
-  console.log(bookService.getMostExpensiveBook());
+  if (!books || books.length == 0)
+    return <div className="books-loading">Loading... </div>;
+  console.log(books);
 
   return (
     <div>
