@@ -34,6 +34,16 @@ export default function BookPreview({ book }) {
         <div className="book-subtitle" style={{ marginBottom: "15px" }}>
           <LongTxt txt={book.subtitle} length={65} />
         </div>
+        <div>
+          <button
+            className="edit-btn"
+            onClick={() => {
+              navigate("/book/edit/" + book.id);
+            }}
+          >
+            Edit
+          </button>
+        </div>
         <div className="book-price">
           {book.listPrice.amount} {book.listPrice.currencyCode}
         </div>

@@ -3,10 +3,10 @@
 For example : in book #1 , game of thrones , there is no description or publish date or author etc etc
 This is all added at the end of this file, using chat-gpt to generate all the data.
 */
+import { utilService } from "./util.service.js";
 
 const books = [
   {
-    id: 1,
     title: "A Game of Thrones",
     subtitle:
       "The first book in the epic fantasy series. A tale of power, intrigue, and betrayal set in a richly detailed world.",
@@ -18,7 +18,6 @@ const books = [
     },
   },
   {
-    id: 2,
     title: "To Kill a Mockingbird",
     subtitle:
       "A powerful story about racial injustice. A deeply moving tale of integrity, courage, and human dignity in the face of prejudice.",
@@ -31,7 +30,6 @@ const books = [
     },
   },
   {
-    id: 3,
     title: "The Lord of the Rings",
     subtitle:
       "An epic fantasy trilogy in one volume. A sweeping tale of heroism, friendship, and the struggle between good and evil.",
@@ -44,7 +42,6 @@ const books = [
     },
   },
   {
-    id: 4,
     title: "Becoming",
     subtitle:
       "The memoir of former First Lady Michelle Obama. A candid, inspiring reflection on identity, family, and public service.",
@@ -56,7 +53,6 @@ const books = [
     },
   },
   {
-    id: 5,
     title: "Harry Potter and the Sorcerer's Stone",
     subtitle:
       "The first book in the Harry Potter series. A magical journey of friendship, courage, and the fight against darkness.",
@@ -69,7 +65,6 @@ const books = [
     },
   },
   {
-    id: 6,
     title: "Moby-Dick",
     subtitle:
       "An epic tale of obsession and revenge. A complex exploration of humanity, nature, and the pursuit of the unattainable.",
@@ -82,7 +77,6 @@ const books = [
     },
   },
   {
-    id: 7,
     title: "War and Peace",
     subtitle:
       "A sweeping novel of Russian society. A masterpiece blending historical events, personal struggles, and philosophical insights.",
@@ -94,7 +88,6 @@ const books = [
     },
   },
   {
-    id: 8,
     title: "The Hobbit",
     subtitle:
       "A fantastical journey in Middle-earth. A tale of adventure, bravery, and the discovery of unexpected strength within.",
@@ -107,7 +100,6 @@ const books = [
     },
   },
   {
-    id: 9,
     title: "The Kite Runner",
     subtitle:
       "A moving story of friendship and betrayal. A heartbreaking exploration of redemption, forgiveness, and human resilience.",
@@ -119,7 +111,6 @@ const books = [
     },
   },
   {
-    id: 10,
     title: "1984",
     subtitle:
       "A dystopian novel about a totalitarian regime. A chilling exploration of surveillance, propaganda, and individual freedom.",
@@ -131,7 +122,6 @@ const books = [
     },
   },
   {
-    id: 11,
     title: "The Alchemist",
     subtitle:
       "A philosophical novel about following your dreams. A timeless story of hope, perseverance, and self-discovery.",
@@ -143,7 +133,6 @@ const books = [
     },
   },
   {
-    id: 12,
     title: "The Catcher in the Rye",
     subtitle:
       "A story about teenage rebellion and identity. An iconic tale capturing the struggles of adolescence and self-discovery.",
@@ -156,7 +145,6 @@ const books = [
     },
   },
   {
-    id: 13,
     title: "The Great Gatsby",
     subtitle:
       "A classic novel of the Jazz Age. A story of love, wealth, and tragedy, it explores themes of ambition and the American Dream.",
@@ -169,7 +157,6 @@ const books = [
     },
   },
   {
-    id: 14,
     title: "The Fault in Our Stars",
     subtitle:
       "A story about love and loss. A touching exploration of life, love, and the impact of impermanence.",
@@ -182,7 +169,6 @@ const books = [
     },
   },
   {
-    id: 15,
     title: "Pride and Prejudice",
     subtitle:
       "A romantic novel about manners and marriage. A witty and humorous exploration of love, society, and class differences.",
@@ -198,6 +184,9 @@ const books = [
 books.forEach((book) => {
   // Add some random pageCount to each book , 1-1000
   book.pageCount = Math.floor(Math.random() * 1000) + 1;
+
+  // Add random ID for each book
+  book.id = utilService.makeId();
 
   // Add the year the book was published
 

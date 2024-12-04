@@ -14,6 +14,7 @@ export const bookService = {
   getDefaultFilter,
   getMostExpensiveBook,
   getHighestPageCountBook,
+  getEmptyBook,
 };
 
 // For Debug (easy access from console):
@@ -71,9 +72,29 @@ function save(book) {
   }
 }
 
-// function getEmptyBook(vendor = '', maxSpeed = '') {
-//     return { vendor, maxSpeed }
-// }
+function getEmptyBook(
+  author = "",
+  description = "",
+  language = "",
+  listPrice = { amount: "", currencyCode: "", isOnSale: "" },
+  pageCount = "",
+  publishedDate = "",
+  subtitle = "",
+  thumbnail = "",
+  title = ""
+) {
+  return {
+    author,
+    description,
+    language,
+    listPrice,
+    pageCount,
+    publishedDate,
+    subtitle,
+    thumbnail,
+    title,
+  };
+}
 
 function getDefaultFilter() {
   return {
@@ -86,12 +107,12 @@ function getDefaultFilter() {
 }
 
 function _createBooks() {
-  //   let books = utilService.loadFromStorage(BOOK_KEY);
-  if (true /*!books || !books.length*/) {
+  let books = utilService.loadFromStorage(BOOK_KEY);
+  if (!books || !books.length) {
     let books = booksDemoData;
     utilService.saveToStorage(BOOK_KEY, books);
-    return books;
   }
+  return books;
 }
 
 function getMostExpensiveBook() {
