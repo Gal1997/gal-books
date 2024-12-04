@@ -11,7 +11,7 @@ export default function BookPreview({ book }) {
       <div
         className="book-image"
         onClick={() => {
-          navigate("/book-details/" + book.id);
+          navigate("/book/" + book.id);
         }}
       >
         {book.listPrice.isOnSale && (
@@ -26,7 +26,7 @@ export default function BookPreview({ book }) {
           <span className="light-reading-badge">Light Reading</span>
         )}
         {book.pageCount > 200 && book.pageCount <= 500 && (
-          <span className="descent-reading-badge">Descent Reading</span>
+          <span className="decent-reading-badge">Decent Reading</span>
         )}
         {book.pageCount > 500 && (
           <span className="serious-reading-badge">Serious Reading</span>

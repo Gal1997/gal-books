@@ -15,7 +15,7 @@ export function RootCmp() {
           <Routes>
             {/* TEMPORARY !!! TODO: change to Home */}
             <Route path="/" element={<BookIndex />} />
-            <Route path="/book-details/:bookId" element={<BookDetails />} />
+            <Route path="/book/:bookId" element={<BookDetails />} />
           </Routes>
         </main>
       </section>
