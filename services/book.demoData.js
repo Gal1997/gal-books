@@ -240,6 +240,8 @@ books.forEach((book) => {
       "J.D. Salinger’s 'The Catcher in the Rye' is a poignant and introspective coming-of-age tale. Narrated by the rebellious and disillusioned Holden Caulfield, the novel delves into themes of alienation, identity, and the loss of innocence. As Holden wanders the streets of New York City, he grapples with the complexities of adulthood and his desire to protect the purity of childhood. Salinger’s timeless prose captures the essence of teenage angst and the universal struggle to find meaning in a world full of contradictions. A classic work of American literature, it continues to resonate with readers across generations.",
     "The Great Gatsby":
       "F. Scott Fitzgerald’s 'The Great Gatsby' is a tragic tale of love, ambition, and the American Dream. Set during the Roaring Twenties, it follows the enigmatic Jay Gatsby as he strives to win back the love of Daisy Buchanan. Narrated by Nick Carraway, the novel explores the decadence and disillusionment of an era defined by materialism and excess. Through its vivid imagery and unforgettable characters, Fitzgerald weaves a cautionary tale about the cost of unbridled ambition and the fragility of human desires. A quintessential classic, 'The Great Gatsby' remains a timeless reflection on hope, identity, and the pursuit of happiness.",
+    "The Fault in Our Stars":
+      "Hazel Grace Lancaster, a 16-year-old with thyroid cancer that has spread to her lungs, attends a cancer patient support group at her mother's behest. At one meeting, Hazel meets a 17-year-old boy currently in remission named Augustus Waters, whose osteosarcoma caused him to lose his right leg. Augustus is at the meeting to support Isaac, his friend who has eye cancer. Hazel and Augustus strike a bond immediately and agree to read each other's favorite novels. Augustus gives Hazel The Price of Dawn, and Hazel recommends An Imperial Affliction, a novel about a cancer-stricken girl named Anna that parallels Hazel's own experience.",
   };
 
   book.description = descriptions[book.title] || "ERROR";
@@ -260,6 +262,7 @@ books.forEach((book) => {
     "Pride and Prejudice": "Jane Austen",
     "The Catcher in the Rye": "J.D. Salinger",
     "The Great Gatsby": "F. Scott Fitzgerald",
+    "The Fault in Our Stars": "John Green",
   };
 
   book.author = authors[book.title] || ["Unknown Author"];
