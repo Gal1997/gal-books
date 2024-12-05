@@ -1,14 +1,15 @@
 import { bookService } from "../services/book.service.js";
-const { useParams } = ReactRouterDOM;
+const { useParams, useNavigate } = ReactRouterDOM;
 const { useEffect, useState } = React;
 
 export function BookDetails() {
   const { bookId } = useParams();
   const [book, setBook] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadBook();
-  }, []);
+  }, [bookId]);
 
   function loadBook(id = bookId) {
     bookService
@@ -21,9 +22,10 @@ export function BookDetails() {
 
   if (!book)
     return <div className="books-loading">Book Details Loading...</div>;
+  console.log(book);
+
   return (
     <div className="book-details-container">
-      {/* <div className="title">{book.title}</div> */}
       <div className="thumbnail">
         {" "}
         <img src={book.thumbnail} alt={book.title} />
@@ -31,7 +33,7 @@ export function BookDetails() {
       <div className="desc">{book.description}</div>
       <div>
         <h2 style={{ marginBottom: "20px" }}>Additonal Information:</h2>
-        <div class="additional-info">
+        <div className="additional-info">
           <table>
             <thead>
               <tr>
@@ -52,6 +54,24 @@ export function BookDetails() {
               </tr>
             </tbody>
           </table>
+          <div className="next-prev-btns">
+            <button
+              onClick={() => {
+                navigate(`/book/${book.prevBookId}`);
+              }}
+            >
+              {"<<"}
+              <br /> Previous
+            </button>
+            <button
+              onClick={() => {
+                navigate(`/book/${book.nextBookId}`);
+              }}
+            >
+              {">>"}
+              <br /> Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

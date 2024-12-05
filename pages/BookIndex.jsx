@@ -8,6 +8,7 @@ export function BookIndex() {
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter());
   useEffect(() => {
     fetchBooks();
+    console.log(books);
   }, [filterBy]);
 
   function fetchBooks() {
@@ -25,7 +26,6 @@ export function BookIndex() {
 
   if (!books || books.length == 0)
     return <div className="books-loading">Loading... </div>;
-  console.log(books);
 
   return (
     <div>

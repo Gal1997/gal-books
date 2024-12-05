@@ -2,11 +2,14 @@ const { useState, useEffect, useRef } = React;
 import { bookService } from "../services/book.service.js";
 import { debounce } from "../services/util.service.js";
 
+const { useNavigate } = ReactRouterDOM;
+
 export function BookFilter({ defaultFilter, onSetFilter }) {
   const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter);
   const mostExpensive = bookService.getMostExpensiveBook();
   const mostPages = bookService.getHighestPageCountBook();
   const newestBookYear = bookService.getNewestBookYear();
+  const navigate = useNavigate();
 
   const onSetFilterDebounce = useRef(debounce(onSetFilter)).current;
 
@@ -43,8 +46,8 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
   const { txt, price, pageCount, publishedDate, isOnSale } = filterByToEdit;
   return (
     <section className="book-filter-container">
-      <h2>Filter by</h2>
       <form className="book-filter-form">
+        <h2>Filter by</h2>
         <div>
           <label htmlFor="txt">Text</label>
           <input
@@ -117,6 +120,14 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
           Reset Filters
         </button>
       </form>
+      <button
+        className="add-new-book-btn"
+        onClick={() => {
+          navigate("/book/add");
+        }}
+      >
+        Add new book
+      </button>
     </section>
   );
 }

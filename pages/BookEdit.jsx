@@ -39,8 +39,6 @@ export function BookEdit() {
     if (field === "price" || field === "currencyCode" || field === "isOnSale") {
       if (field === "price") field = "amount"; // Stupid but necesarry
 
-      console.log(field);
-
       setBookToEdit((prevBook) => ({
         ...prevBook,
         listPrice: {
