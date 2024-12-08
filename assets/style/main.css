@@ -235,6 +235,8 @@ a.active {
   margin-top: 20px;
   font-size: 20px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  height: 50px;
+  align-content: center;
 }
 
 .book-info-container {
@@ -256,6 +258,7 @@ a.active {
   font-size: 18px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: rgb(3, 81, 3);
+  margin-top: auto; /* Push the bottom content to the bottom of the card */
 }
 
 .book:hover .book-image img {
@@ -344,6 +347,9 @@ a.active {
   border-radius: 2px 10px 40px 0px;
 }
 
+.wrapper-for-badge {
+  margin: auto;
+}
 .book-info-container .light-reading-badge,
 .decent-reading-badge,
 .serious-reading-badge {

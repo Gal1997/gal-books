@@ -22,18 +22,21 @@ export default function BookPreview({ book }) {
       <div className="book-info-container">
         <div className="book-title">{book.title}</div>
 
-        {book.pageCount < 100 && (
-          <span className="light-reading-badge">Light Reading</span>
-        )}
-        {book.pageCount > 200 && book.pageCount <= 500 && (
-          <span className="decent-reading-badge">Decent Reading</span>
-        )}
-        {book.pageCount > 500 && (
-          <span className="serious-reading-badge">Serious Reading</span>
-        )}
+        <div className="wrapper-for-badge">
+          {book.pageCount < 200 && (
+            <span className="light-reading-badge">Light Reading</span>
+          )}
+          {book.pageCount >= 200 && book.pageCount <= 500 && (
+            <span className="decent-reading-badge">Decent Reading</span>
+          )}
+          {book.pageCount > 500 && (
+            <span className="serious-reading-badge">Serious Reading</span>
+          )}
+        </div>
         <div className="book-subtitle" style={{ marginBottom: "15px" }}>
           <LongTxt txt={book.subtitle} length={65} />
         </div>
+
         <div>
           <button
             className="edit-btn"
