@@ -5,6 +5,7 @@ import { BookEdit } from "./pages/BookEdit.jsx";
 import { Home } from "./pages/Home.jsx";
 import { AboutPage } from "./pages/AboutPage.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
+import { UserMsg } from "./cmps/UserMsg.jsx";
 
 const Router = ReactRouterDOM.HashRouter;
 const { Routes, Route } = ReactRouterDOM;
@@ -27,6 +28,7 @@ export function RootCmp() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
+        <UserMsg />
       </section>
     </Router>
   );

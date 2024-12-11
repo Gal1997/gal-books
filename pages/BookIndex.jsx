@@ -1,6 +1,7 @@
 import { bookService } from "../services/book.service.js";
 import BookPreview from "../cmps/BookPreview.jsx";
 import { BookFilter } from "../cmps/BookFilter.jsx";
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 const { useState, useEffect } = React;
 
 export function BookIndex() {
@@ -16,8 +17,11 @@ export function BookIndex() {
       .query(filterBy)
       .then((books) => {
         setBooks(books);
+        showSuccessMsg("Books loaded successfully");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        showErrorMsg("Problem loading books...");
+      });
   }
 
   function onSetFilter(filterBy) {
