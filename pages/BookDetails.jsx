@@ -1,4 +1,5 @@
 import { bookService } from "../services/book.service.js";
+import { AddReview } from "../cmps/AddReview.jsx";
 const { useParams, useNavigate } = ReactRouterDOM;
 const { useEffect, useState } = React;
 
@@ -31,9 +32,9 @@ export function BookDetails() {
         <img src={book.thumbnail} alt={book.title} />
       </div>
       <div className="desc">{book.description}</div>
-      <div>
-        <h2 style={{ marginBottom: "20px" }}>Additonal Information:</h2>
+      <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
         <div className="additional-info">
+          <h2 style={{ marginBottom: "20px" }}>Additonal Information:</h2>
           <table>
             <thead>
               <tr>
@@ -54,24 +55,25 @@ export function BookDetails() {
               </tr>
             </tbody>
           </table>
-          <div className="next-prev-btns">
-            <button
-              onClick={() => {
-                navigate(`/book/${book.prevBookId}`);
-              }}
-            >
-              {"<<"}
-              <br /> Previous
-            </button>
-            <button
-              onClick={() => {
-                navigate(`/book/${book.nextBookId}`);
-              }}
-            >
-              {">>"}
-              <br /> Next
-            </button>
-          </div>
+        </div>
+        <AddReview />
+        <div className="next-prev-btns">
+          <button
+            onClick={() => {
+              navigate(`/book/${book.prevBookId}`);
+            }}
+          >
+            {"<<"}
+            <br /> Previous
+          </button>
+          <button
+            onClick={() => {
+              navigate(`/book/${book.nextBookId}`);
+            }}
+          >
+            {">>"}
+            <br /> Next
+          </button>
         </div>
       </div>
     </div>
