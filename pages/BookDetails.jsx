@@ -1,5 +1,6 @@
 import { bookService } from "../services/book.service.js";
 import { AddReview } from "../cmps/AddReview.jsx";
+import { BookReviews } from "../cmps/BookReviews.jsx";
 const { useParams, useNavigate } = ReactRouterDOM;
 const { useEffect, useState } = React;
 
@@ -56,6 +57,9 @@ export function BookDetails() {
             </tbody>
           </table>
         </div>
+
+        <BookReviews book={book} />
+
         <AddReview />
         <div className="next-prev-btns">
           <button

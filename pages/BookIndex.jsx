@@ -9,7 +9,6 @@ export function BookIndex() {
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter());
   useEffect(() => {
     fetchBooks();
-    console.log(books);
   }, [filterBy]);
 
   function fetchBooks() {
@@ -17,6 +16,7 @@ export function BookIndex() {
       .query(filterBy)
       .then((books) => {
         setBooks(books);
+        console.log("Books : ", books);
         showSuccessMsg("Books loaded successfully");
       })
       .catch((err) => {
@@ -30,17 +30,19 @@ export function BookIndex() {
 
   if (!books || books.length == 0)
     return <div className="books-loading">Loading... </div>;
-
-  return (
-    <div>
-      <BookFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
-      <div className="books-container">
-        {books == "empty" && (
-          <div className="filter-no-books">No books matches your filters.</div>
-        )}
-        {books != "empty" &&
-          books.map((book) => <BookPreview key={book.id} book={book} />)}
+  else
+    return (
+      <div>
+        <BookFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
+        <div className="books-container">
+          {books == "empty" && (
+            <div className="filter-no-books">
+              No books matches your filters.
+            </div>
+          )}
+          {books != "empty" &&
+            books.map((book) => <BookPreview key={book.id} book={book} />)}
+        </div>
       </div>
-    </div>
-  );
+    );
 }

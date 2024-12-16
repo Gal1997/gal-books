@@ -418,6 +418,7 @@ a.active {
   width: 100%;
   border-collapse: collapse;
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 .book-details-container th,
@@ -671,4 +672,38 @@ td {
   font-size: 14px;
   font-weight: bold;
   text-wrap: nowrap;
+}
+
+.review-btn {
+  width: 100px;
+  align-self: center;
+  background-color: rgb(159, 168, 157);
+  box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.review-btn:hover {
+  scale: 1.15;
+  box-shadow: 0px 0px 10px 6px rgba(255, 255, 255, 1);
+  background-color: rgb(116, 126, 113);
+}
+
+.reviews-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
+  justify-content: space-around;
+  row-gap: 30px;
+  grid-auto-flow: dense;
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.reviews-container .name {
+  font-weight: bold;
+  scale: 1.15;
+}
+
+.reviews-container .readat {
+  scale: 0.9;
 }

@@ -286,6 +286,49 @@ books.forEach((book) => {
   };
 
   book.language = languages[book.title];
+
+  const reviews = [
+    { fullname: "Grace", rating: 4, readat: "2024-12-29" },
+    { fullname: "Joshua", rating: 3, readat: "2024-12-03" },
+    { fullname: "Emma", rating: 2, readat: "2024-12-27" },
+    { fullname: "Matthew", rating: 3, readat: "2024-12-16" },
+    { fullname: "James", rating: 4, readat: "2024-12-16" },
+    { fullname: "Nathan", rating: 2, readat: "2024-12-08" },
+    { fullname: "Sophia", rating: 4, readat: "2024-12-22" },
+    { fullname: "Chloe", rating: 3, readat: "2024-12-06" },
+    { fullname: "Benjamin", rating: 3, readat: "2024-12-17" },
+    { fullname: "Daniel", rating: 3, readat: "2024-12-06" },
+    { fullname: "Ava", rating: 5, readat: "2024-12-30" },
+    { fullname: "Alexander", rating: 4, readat: "2024-12-13" },
+    { fullname: "Jane", rating: 4, readat: "2024-12-11" },
+    { fullname: "Sarah", rating: 2, readat: "2024-12-04" },
+    { fullname: "Sophia", rating: 5, readat: "2024-12-13" },
+    { fullname: "Andrew", rating: 4, readat: "2024-12-20" },
+    { fullname: "James", rating: 5, readat: "2024-12-24" },
+    { fullname: "Matthew", rating: 3, readat: "2024-12-18" },
+    { fullname: "Isabella", rating: 2, readat: "2024-12-03" },
+    { fullname: "Joshua", rating: 4, readat: "2024-12-18" },
+    { fullname: "Olivia", rating: 3, readat: "2024-12-04" },
+    { fullname: "Benjamin", rating: 5, readat: "2024-12-16" },
+    { fullname: "Chloe", rating: 1, readat: "2024-12-29" },
+    { fullname: "Isabella", rating: 3, readat: "2024-12-22" },
+    { fullname: "Ava", rating: 5, readat: "2024-12-09" },
+    { fullname: "Jane", rating: 5, readat: "2024-12-17" },
+    { fullname: "John", rating: 4, readat: "2024-12-10" },
+    { fullname: "Alexander", rating: 4, readat: "2024-12-02" },
+    { fullname: "Chloe", rating: 4, readat: "2024-12-11" },
+    { fullname: "Daniel", rating: 3, readat: "2024-12-04" },
+  ];
+
+  // Add 5 random reviews
+  book.reviews = [
+    reviews[Math.floor(Math.random() * reviews.length)],
+    reviews[Math.floor(Math.random() * reviews.length)],
+    reviews[Math.floor(Math.random() * reviews.length)],
+    reviews[Math.floor(Math.random() * reviews.length)],
+    reviews[Math.floor(Math.random() * reviews.length)],
+    reviews[Math.floor(Math.random() * reviews.length)],
+  ];
 });
 
 export default books;

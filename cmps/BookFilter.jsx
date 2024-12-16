@@ -5,13 +5,17 @@ import { debounce } from "../services/util.service.js";
 const { useNavigate } = ReactRouterDOM;
 
 export function BookFilter({ defaultFilter, onSetFilter }) {
-  const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter);
-  const mostExpensive = bookService.getMostExpensiveBook();
-  const mostPages = bookService.getHighestPageCountBook();
-  const newestBookYear = bookService.getNewestBookYear();
   const navigate = useNavigate();
-
+  const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter);
   const onSetFilterDebounce = useRef(debounce(onSetFilter)).current;
+  let mostExpensive, mostPages, newestBookYear;
+  try {
+    mostExpensive = bookService.getMostExpensiveBook();
+    mostPages = bookService.getHighestPageCountBook();
+    newestBookYear = bookService.getNewestBookYear();
+  } catch (err) {
+    navigate(0); // This is to tackle the problem that first render crashes(when bookDB is not ready)
+  }
 
   useEffect(() => {
     onSetFilterDebounce(filterByToEdit);

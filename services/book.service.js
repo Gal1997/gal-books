@@ -3,7 +3,8 @@ import { storageService } from "./async-storage.service.js";
 import booksDemoData from "./book.demoData.js";
 
 const BOOK_KEY = "bookDB";
-const books = _createBooks();
+let books = [];
+books = _createBooks();
 
 export const bookService = {
   query,
@@ -15,6 +16,7 @@ export const bookService = {
   getMostExpensiveBook,
   getHighestPageCountBook,
   getEmptyBook,
+  addReview,
 };
 
 // For Debug (easy access from console):
@@ -70,6 +72,25 @@ function save(book) {
   } else {
     return storageService.post(BOOK_KEY, book);
   }
+}
+
+function addReview(review, bookId) {
+  return get(bookId)
+    .then((book) => {
+      if (!book) {
+        throw new Error("Book not found.");
+      }
+      const updatedBook = {
+        ...book,
+        reviews: [...(book.reviews || []), review],
+        // Spread the last reviews and add a new one ,
+        // or create an empty array so the new one will be inside an array and not a single object
+      };
+      return storageService.put(BOOK_KEY, updatedBook);
+    })
+    .catch((error) => {
+      console.error("Failed to add review:", error);
+    });
 }
 
 function getEmptyBook(
