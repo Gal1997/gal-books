@@ -124,14 +124,6 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
           Reset Filters
         </button>
       </form>
-      <button
-        className="add-new-book-btn"
-        onClick={() => {
-          navigate("/book/add");
-        }}
-      >
-        Add new book
-      </button>
     </section>
   );
 }
