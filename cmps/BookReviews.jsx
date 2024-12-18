@@ -1,6 +1,17 @@
 import { bookService } from "../services/book.service.js";
 
 export function BookReviews({ book }) {
+  if (!book.reviews)
+    return (
+      <div>
+        {" "}
+        <h2>Reviews:</h2>
+        <p style={{ fontSize: "20px", fontStyle: "italic" }}>
+          There are no reviews.
+          <br /> be the first to add one!
+        </p>
+      </div>
+    );
   return (
     <div>
       <h2>Reviews:</h2>

@@ -23,6 +23,9 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
+  if (newEntity.thumbnail == "")
+    newEntity.thumbnail =
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/800px-No-Image-Placeholder.svg.png";
   newEntity = { ...newEntity };
   newEntity.id = _makeId();
   return query(entityType).then((entities) => {
@@ -39,8 +42,12 @@ function put(entityType, updatedEntity) {
       throw new Error(
         `Update failed, cannot find entity with id: ${entityId} in: ${entityType}`
       );
+    if (updatedEntity.thumbnail == "")
+      updatedEntity.thumbnail =
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/800px-No-Image-Placeholder.svg.png";
     const entityToUpdate = { ...entities[idx], ...updatedEntity };
     entities.splice(idx, 1, entityToUpdate);
+
     _save(entityType, entities);
     return updatedEntity;
   });
