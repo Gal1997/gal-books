@@ -713,6 +713,9 @@ td {
   align-items: center;
   gap: 15px;
 }
+.google-api-form {
+  position: relative;
+}
 
 .google-api-form input::placeholder {
   color: rgb(110, 110, 110);
@@ -720,16 +723,16 @@ td {
 .google-api-form input:focus {
   background-color: rgb(159, 168, 157);
   transition: background-color 1s;
-  transform: scale(1.2);
+  transform: scale(1.5);
   background-color: white;
 }
 
 .google-api-form input:hover {
-  transform: scale(1.2);
+  transform: scale(1.5);
   background-color: white;
 }
 .google-api-form input {
-  transition: 0.2s ease-in-out;
+  transition: 0.4s ease-in-out;
   width: 200px;
   padding: 0.6rem;
   box-shadow: 0px 0px 4px 1px rgba(159, 168, 157, 0.6);
@@ -737,4 +740,33 @@ td {
   border-radius: 5px;
   display: flex;
   background-color: rgba(100, 130, 91, 0.2);
+}
+
+.google-api-form-dropdown {
+  position: absolute;
+  top: 100%;
+  left: -26%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  list-style: none;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 15px 0cap 0px;
+  z-index: 10;
+  max-height: 200px;
+  overflow: auto;
+  font-size: 18px;
+}
+
+.google-api-form-dropdown li {
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: 0px 0px 4px 1px rgba(84, 115, 77, 0.6);
+  border-radius: 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: auto;
+  min-width: 300px;
 }
