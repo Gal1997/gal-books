@@ -1,7 +1,7 @@
 import { bookService } from "../services/book.service.js";
 
 export function BookReviews({ book }) {
-  if (!book.reviews)
+  if (!book.reviews || book.reviews.length == 0)
     return (
       <div>
         {" "}

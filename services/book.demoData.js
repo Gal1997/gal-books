@@ -268,21 +268,21 @@ books.forEach((book) => {
   book.author = authors[book.title] || ["Unknown Author"];
 
   const languages = {
-    "A Game of Thrones": "English",
-    "To Kill a Mockingbird": "English",
-    "The Lord of the Rings": "English",
-    Becoming: "English",
-    "Harry Potter and the Sorcerer's Stone": "English",
-    "Moby-Dick": "English",
-    "War and Peace": "Russian",
-    "The Hobbit": "English",
-    "The Kite Runner": "English",
-    1984: "English",
-    "The Alchemist": "Portuguese",
-    "The Catcher in the Rye": "English",
-    "The Great Gatsby": "English",
-    "The Fault in Our Stars": "English",
-    "Pride and Prejudice": "English",
+    "A Game of Thrones": "EN",
+    "To Kill a Mockingbird": "EN",
+    "The Lord of the Rings": "EN",
+    Becoming: "EN",
+    "Harry Potter and the Sorcerer's Stone": "EN",
+    "Moby-Dick": "EN",
+    "War and Peace": "RU",
+    "The Hobbit": "EN",
+    "The Kite Runner": "EN",
+    1984: "EN",
+    "The Alchemist": "PT",
+    "The Catcher in the Rye": "EN",
+    "The Great Gatsby": "EN",
+    "The Fault in Our Stars": "EN",
+    "Pride and Prejudice": "EN",
   };
 
   book.language = languages[book.title];

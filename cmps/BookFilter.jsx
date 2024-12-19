@@ -2,12 +2,24 @@ const { useState, useEffect, useRef } = React;
 import { bookService } from "../services/book.service.js";
 import { debounce } from "../services/util.service.js";
 
-const { useNavigate } = ReactRouterDOM;
+const { useNavigate, useSearchParams } = ReactRouterDOM;
 
 export function BookFilter({ defaultFilter, onSetFilter }) {
   const navigate = useNavigate();
-  const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter);
   const onSetFilterDebounce = useRef(debounce(onSetFilter)).current;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filterFromSearchParams = {
+    txt: searchParams.get("txt"),
+    price: searchParams.get("price"),
+    pageCount: searchParams.get("pageCount"),
+    publishedDate: searchParams.get("publishedDate"),
+    isOnSale: searchParams.get("isOnSale"),
+  };
+  const [filterByToEdit, setFilterByToEdit] = useState(
+    mergeObjects(filterFromSearchParams, defaultFilter)
+  );
+  console.log("FILTER : ", filterByToEdit);
+
   let mostExpensive, mostPages, newestBookYear;
   try {
     mostExpensive = bookService.getMostExpensiveBook();
@@ -17,8 +29,37 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
     navigate(0); // This is to tackle the problem that first render crashes(when bookDB is not ready)
   }
 
+  function mergeObjects(obj1, obj2) {
+    const merged = {};
+
+    for (const key in obj1) {
+      if (obj1[key] !== null) {
+        // Use value from obj1 if not null
+        merged[key] = obj1[key];
+      } else {
+        // Use value from obj2 if obj1's value is null
+        merged[key] = obj2[key];
+      }
+    }
+
+    return merged;
+  }
+
   useEffect(() => {
     onSetFilterDebounce(filterByToEdit);
+    const params = {};
+
+    // Iterate through each property of the filterByToEdit object
+    Object.keys(filterByToEdit).forEach((key) => {
+      const value = filterByToEdit[key];
+      if (value) {
+        // Add the property to the searchParams object only if the value is not empty
+        params[key] = value;
+      }
+    });
+
+    // Set the search params
+    setSearchParams(params);
   }, [filterByToEdit]);
 
   function handleChange({ target }) {
@@ -108,7 +149,7 @@ export function BookFilter({ defaultFilter, onSetFilter }) {
         <div>
           <label htmlFor="isOnSale">Show only books on sale</label>
           <input
-            checked={isOnSale}
+            checked={isOnSale ? 1 : 0}
             onChange={handleChange}
             type="checkbox"
             name="isOnSale"

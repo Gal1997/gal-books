@@ -17,6 +17,7 @@ export const bookService = {
   getHighestPageCountBook,
   getEmptyBook,
   addReview,
+  searchBooks,
 };
 
 // For Debug (easy access from console):
@@ -172,3 +173,48 @@ function _setNextPrevBookId(book) {
 //     car.id = utilService.makeId()
 //     return car
 // }
+
+async function searchBooks(searchString) {
+  const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
+    searchString
+  )}&maxResults=5`;
+
+  try {
+    const response = await fetch(apiUrl); // Fetch data from Google Books API
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json(); // Parse the JSON response
+    if (data.totalItems == 0) {
+      return [];
+    }
+    // Extract relevant book information
+    const books = data.items.map((item) => {
+      return {
+        id: item.id,
+        author: (item.volumeInfo.authors || ["Unknown"])[0],
+        description: item.volumeInfo.description || "",
+        language: item.volumeInfo.language || "",
+        listPrice: { amount: 9.99, currencyCode: "USD", isOnSale: false },
+        pageCount: item.volumeInfo.pageCount || 100,
+        publishedDate: item.volumeInfo.publishedDate || "2000",
+        reviews: [],
+        subtitle: item.volumeInfo.subtitle || "",
+        thumbnail: (
+          item.volumeInfo.imageLinks || {
+            thumbnail:
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/800px-No-Image-Placeholder.svg.png",
+          }
+        ).thumbnail,
+
+        title: item.volumeInfo.title || "",
+      };
+    });
+
+    return books;
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    return [];
+  }
+}
